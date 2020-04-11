@@ -1,0 +1,317 @@
+#include "foods.h"
+// 애플리케이션용 함수 원형
+void create_record();
+void read_record();
+void update_record();
+void delete_record();
+void list_record();
+void list_sort();
+//void search_name();
+void search_city();
+void search_type();
+void search_price();
+void load_file();
+void list_sort();
+void save_file();
+//약간 업로드 파일의 yes항목과 비슷한 느낌?
+//내가 여태 입력한 회원정보들을 파일에 저장
+
+void debug_records(); // for debug  
+
+int main(){
+//    r_init();
+    int menu;
+    while(1){
+
+        printf("\nMenu : 1.Create 2.Read 3.Update 4.Delete 5.List 6.List_best 7.Search(city) 8.Search(type) 9.Search(price) 10.Load 11.Save 0.Quit > ");
+        scanf("%d", &menu);
+        printf("\n");
+        switch(menu){
+            case 1: 
+                create_record();
+                break;
+            case 2: 
+                read_record();
+                break;
+            case 3: 
+                update_record();
+                break;
+            case 4: 
+                delete_record();
+                break;
+            case 5: 
+                list_record();
+                break;
+            case 6: 
+                list_sort();
+                break;       
+            case 7: 
+                search_city();
+                break;            
+            case 8: 
+                search_type();
+                break;            
+            case 9: 
+                search_price();
+                break;
+            case 10: 
+                load_file();
+                break;
+            case 11: 
+                save_file();
+                break;                
+            case 12:
+                debug_records();
+                break;
+            case 0: 
+            default: 
+                return 0;
+        }
+    }
+    return 0;
+}
+
+void create_record(){
+    if(!r_is_available()) {
+        printf("There is no space!\n");
+        return;
+    }
+    char city[20], type[20], name[20];
+    int price, grade;  
+    printf("Enter a new restaurant's info. \n");
+    printf("Name > ");
+    scanf("%s", name);
+    if(r_search_by_name(name)) {
+        printf("Duplicated name!\n");
+        return;
+    }
+    printf("City > ");
+    scanf("%s", city);
+    printf("Type > ");
+    scanf("%s", type);
+    printf("Price > ");
+    scanf("%d", &price);
+    printf("Grade > ");
+    scanf("%d", &grade);
+    r_create(city, type, name, price, grade);
+}
+
+void read_record(){
+    char name[20];
+    printf("Enter a name > ");
+    scanf("%s", name);
+
+    T_Record* p = r_search_by_name(name);
+    if(p) {
+        printf("Restaurant info.\n");
+        printf("Name : %s\n", r_getname(p));
+        printf("City : %s\n", r_getcity(p));
+        printf("Type : %s\n", r_gettype(p));
+        printf("Price : %d\n", r_getprice(p));
+        printf("Grade : %d\n", r_getgrade(p));
+    }
+    else {
+        printf("No such restaurant!\n");
+    }
+}
+
+void update_record(){
+    char city[20], type[20], name[20];
+    int price, grade;
+    printf("Enter a name > ");
+    scanf("%s", name);
+
+    T_Record* p = r_search_by_name(name);
+    if(p) {
+        printf("Enter a updated info.\n");
+        printf("City > ");
+        scanf("%s", city);
+        printf("Type > ");
+        scanf("%s", type);
+        printf("Price > ");
+        scanf("%d", &price);
+        printf("Grade > ");
+        scanf("%d", &grade);
+
+        r_update(p, city, type, price, grade);
+    }
+    else {
+        printf("No such restaurant!\n");
+    }
+}
+
+void delete_record(){
+    char name[20];
+    printf("Enter a name > ");
+    scanf("%s", name);
+
+    T_Record* p = r_search_by_name(name);
+    if(p) {
+        r_delete(p);
+        printf("The record is deleted!\n");
+    }
+    else {
+        printf("No such restaurant!\n");
+    }
+}
+
+void list_record(){
+    // 전체 리스트 출력
+    printf("All records.\n");
+    int size = r_count();
+    T_Record* records[MAX_foods];
+    r_get_all(records);
+    for(int i=0; i<size; i++){
+        T_Record* p = records[i];
+        printf("%d. %s\n", i+1, r_to_string(p));
+    }
+}
+
+void list_sort(){
+    // 전체 리스트 평점순으로
+    printf("All records of high grade order.\n");
+    int size = r_count();
+    T_Record* records[MAX_foods];
+
+printf("[debug] before sort.\n");
+   // swap();   
+//printf("[debug]after swap.\n");
+    r_get_all_sort(records);
+ //records[] 배열 안에 있는 문자의 순서를 바꿔놓는 것
+printf("[debug] after sort.\n");
+    //아래는 전체 레코드 출력 
+    for(int i=0; i<size; i++){
+       
+	 T_Record* p = records[i];
+        printf("%d. %s\n", i+1, r_to_string(p));
+    }
+}
+
+void search_city(){
+    //지역으로 검색
+    char name[20];
+    printf("Enter a city > ");
+    scanf("%s", name);
+
+    T_Record* records[MAX_foods];
+    int size = r_get_all_by_city(records, name);
+    printf("%d records found.\n", size);
+
+    for(int i=0; i<size; i++){
+        T_Record* p = records[i];
+        printf("%d. %s\n", i+1, r_to_string(p));
+    }
+}
+
+void search_type(){
+    //지역으로 검색
+    char name[20];
+    printf("Enter a type > ");
+    scanf("%s", name);
+
+    T_Record* records[MAX_foods];
+    int size = r_get_all_by_type(records, name);
+    printf("%d records found.\n", size);
+
+    for(int i=0; i<size; i++){
+        T_Record* p = records[i];
+        printf("%d. %s\n", i+1, r_to_string(p));
+    }
+}
+
+/*
+void search_name(){
+    //이름 일부문자열로 검색
+    char name[20];
+    printf("Enter a name > ");
+    scanf("%s", name);
+
+    T_Record* records[MAX_foods];
+    int size = r_get_all_by_name(records, name);
+    printf("%d records found.\n", size);
+    for(int i=0; i<size; i++){
+        T_Record* p = records[i];
+        printf("%d. %s\n", i+1, r_to_string(p));
+    }
+}
+*/
+
+void search_price(){
+
+    int n, m;
+    printf("Enter price range (X Y : greater than X, not more than Y) : ");
+    scanf("%d %d", &n, &m);
+
+    T_Record* records[MAX_foods];
+    int size = r_get_all_by_price(records, n, m);
+    printf("%d records found.\n", size);
+
+    for(int i=0; i<size; i++){
+        T_Record* p = records[i];
+        printf("%d. %s\n", i+1, r_to_string(p));
+        }
+    
+}
+
+void load_file(){
+    // 데이터파일 읽기
+    printf("All data will be reloaded.\n");
+    
+    printf("1.Yes 0.No > ");
+    int yesno;
+    scanf("%d", &yesno);
+    if (yesno == 0) return;
+    //r_init();   // 레코드 모두 제거 
+    
+    FILE* f = fopen("foods.txt", "r");
+    char city[20], type[20], name[20];
+    int price, grade;
+
+    while(!feof(f))
+    {
+        if(!r_is_available()) {
+            printf("[Load] There is no space!\n");
+            break;
+        }
+
+        int n = fscanf(f,"%s %s %s %d %d", city, type, name, &price, &grade);
+        if (n<4) break;
+        if(r_search_by_name(name)) {
+            printf("[Load] Duplicated name(%s)! loading.\n", name);
+            continue;
+        }
+        r_create(city, type, name, price, grade);
+	  
+}
+	
+    printf("%d records are read from file!\n", r_count());    
+    fclose(f);
+}
+
+void save_file(){
+    // 데이터파일 저장
+    FILE* f = fopen(	"foods.txt", "w");
+    printf("All records.\n");
+    int size = r_count();
+    T_Record* records[MAX_foods];
+    r_get_all(records);
+    for(int i=0; i<size; i++){
+        T_Record* p = records[i];
+        fprintf(f,"%s\n", r_to_string_save(p));
+   
+
+    }
+    fclose(f);
+}
+  
+void debug_records(){
+    // for debug  
+    T_Record* records[MAX_foods]={0};
+    r_get_all2(records);
+    for(int i=0; i<MAX_foods; i++){
+        printf("%d - %p\n",i, records[i]);
+    }    
+}
+
+
+
