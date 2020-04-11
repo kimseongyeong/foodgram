@@ -6,14 +6,12 @@ void update_record();
 void delete_record();
 void list_record();
 void list_sort();
-//void search_name();
 void search_city();
 void search_type();
 void search_price();
 void load_file();
 void list_sort();
 void save_file();
-//약간 업로드 파일의 yes항목과 비슷한 느낌?
 //내가 여태 입력한 회원정보들을 파일에 저장
 
 void debug_records(); // for debug  
