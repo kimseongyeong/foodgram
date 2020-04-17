@@ -74,7 +74,7 @@ void create_record(){
         printf("There is no space!\n");
         return;
     }
-    char city[20], type[20], name[20];
+    char city[100], type[100], name[100];
     int price, grade;  
     printf("Enter a new restaurant's info. \n");
     printf("Name > ");
@@ -91,11 +91,17 @@ void create_record(){
     scanf("%d", &price);
     printf("Grade > ");
     scanf("%d", &grade);
+    while( (0>grade) || (grade>10) )
+    {
+        printf("Error: enter a grade 0~10\n");
+        printf("Grade > ");
+        scanf("%d", &grade);
+    }
     r_create(city, type, name, price, grade);
 }
 
 void read_record(){
-    char name[20];
+    char name[100];
     printf("Enter a name > ");
     scanf("%s", name);
 
@@ -114,7 +120,7 @@ void read_record(){
 }
 
 void update_record(){
-    char city[20], type[20], name[20];
+    char city[100], type[100], name[100];
     int price, grade;
     printf("Enter a name > ");
     scanf("%s", name);
@@ -139,7 +145,7 @@ void update_record(){
 }
 
 void delete_record(){
-    char name[20];
+    char name[100];
     printf("Enter a name > ");
     scanf("%s", name);
 
@@ -171,12 +177,7 @@ void list_sort(){
     int size = r_count();
     T_Record* records[MAX_foods];
 
-printf("[debug] before sort.\n");
-   // swap();   
-//printf("[debug]after swap.\n");
     r_get_all_sort(records);
- //records[] 배열 안에 있는 문자의 순서를 바꿔놓는 것
-printf("[debug] after sort.\n");
     //아래는 전체 레코드 출력 
     for(int i=0; i<size; i++){
        
@@ -187,7 +188,7 @@ printf("[debug] after sort.\n");
 
 void search_city(){
     //지역으로 검색
-    char name[20];
+    char name[100];
     printf("Enter a city > ");
     scanf("%s", name);
 
@@ -202,8 +203,8 @@ void search_city(){
 }
 
 void search_type(){
-    //지역으로 검색
-    char name[20];
+    //음식종류로 검색
+    char name[100];
     printf("Enter a type > ");
     scanf("%s", name);
 
@@ -217,22 +218,6 @@ void search_type(){
     }
 }
 
-/*
-void search_name(){
-    //이름 일부문자열로 검색
-    char name[20];
-    printf("Enter a name > ");
-    scanf("%s", name);
-
-    T_Record* records[MAX_foods];
-    int size = r_get_all_by_name(records, name);
-    printf("%d records found.\n", size);
-    for(int i=0; i<size; i++){
-        T_Record* p = records[i];
-        printf("%d. %s\n", i+1, r_to_string(p));
-    }
-}
-*/
 
 void search_price(){
 
@@ -259,10 +244,9 @@ void load_file(){
     int yesno;
     scanf("%d", &yesno);
     if (yesno == 0) return;
-    //r_init();   // 레코드 모두 제거 
     
     FILE* f = fopen("foods.txt", "r");
-    char city[20], type[20], name[20];
+    char city[100], type[100], name[100];
     int price, grade;
 
     while(!feof(f))
@@ -280,7 +264,7 @@ void load_file(){
         }
         r_create(city, type, name, price, grade);
 	  
-}
+    }
 	
     printf("%d records are read from file!\n", r_count());    
     fclose(f);

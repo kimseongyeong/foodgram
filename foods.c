@@ -104,6 +104,9 @@ void r_update(T_Record* p, char* c, char* t, int pr, int g){
     strcpy(p->type, t);
     p->price = pr;
     p->grade = g;
+#ifdef DEBUG
+	printf("[DEBUG] update complete.\n");
+#endif
 }
 
 void r_delete(T_Record* p){
@@ -116,6 +119,9 @@ void r_delete(T_Record* p){
     free(p);
     foods[index] = NULL;
     _count--;
+#ifdef DEBUG
+	printf("[DEBUG] delete: %s \n", p->name);
+#endif
 }
 
 
@@ -139,11 +145,10 @@ void r_get_all2(T_Record* a[]){
     }
 }
 
-void swap_2(T_Record* a[], int i, int j)
-{//city, type, name, price, grade
- // char temp[20];
+void swap(T_Record* a[], int i, int j)
+{
  
-  char *temp; //= (char*)malloc(20*sizeof(char));
+  char temp[100]; 
    int tmp;
     strcpy(temp, foods[i]->city);
     strcpy(foods[i]->city, foods[j]->city);
@@ -167,86 +172,19 @@ void swap_2(T_Record* a[], int i, int j)
 
 }
 
-
-
-void swap(/*T_Record *a[]*/)
-{
-  T_Record *temp;
-  int c=0;
-  for(int i=0; i<MAX_foods; i++)
-  {
-       printf("i = %d, j = %d\n", i, i+1);
-       if(foods[i]->grade < foods[i+1]->grade)
-       {
-        temp=foods[i];
-        foods[i] = foods[i+1];
-        foods[i+1] = temp;
-
-        printf("[DEBUG] temp 후 j의 grade.%d name %s \n",foods[i+1]->grade, foods[i+1]->name);
-        printf("[DEBUG] temp 후 i의 grade.%d \n",foods[i]->grade);
-
-        }
-
-       // a[i] = foods[i];
-       // printf("[debug] a의 이름 %s.\n", a[i]->name);
-
-
-   }
-
-  
-}
-
-
-/*
-  T_Record *temp;
-  int c=0;
-  for(int i=0; i<_count; i++)
-  {
-   for(int j=i+1; j<_count+1; j++)
-   {
-	printf("i = %d, j = %d\n", i, j);
-       if(foods[i]->grade < foods[j]->grade)
-       {
-        temp=foods[i];
-        foods[i] = foods[j];
-        foods[j] = temp;
-
-	printf("[DEBUG] temp 후 j의 grade.%d name %s \n",foods[j]->grade, foods[j]->name);
-        printf("[DEBUG] temp 후 i의 grade.%d \n",foods[i]->grade);
-
-	}
-
-       // a[i] = foods[i];
-       // printf("[debug] a의 이름 %s.\n", a[i]->name);
-        
-      
-   }
-
-  }
-}
-*/
-/*
-void swap_3(T_Record*first[], T_Record*second[])
-{
-    T_Record *temp;
-
-    temp =first;
-    first=second;
-    second = temp;
-
-}
-*/
-
 void r_get_all_sort(T_Record* a[])
 {//grade비교해서 더 평점 좋은 애를 위로위로
- int i, c=0;
+ int c=0;
 
-  for(int i=0; i<MAX_foods; i++)
+  for(int i=0; i<_count; i++)
   {
-      for(int j=i; j<MAX_foods; j++)
+    #ifdef DEVUG
+    printf("[debug_I]i = %d\n", i);
+    #endif
+      for(int j=i+1; j<_count; j++)
       {
 	#ifdef DEBUG
-	printf("[debug]i = %d, j=%d \n", i, j);
+	printf("[debug_J]i = %d, j=%d \n", i, j);
 	#endif
         
 	if(foods[i]!=NULL && (foods[i]->grade < foods[j]->grade))
@@ -255,13 +193,10 @@ void r_get_all_sort(T_Record* a[])
 	 printf("[debug] before swap \n");
 	 #endif
 
-           swap_2(foods, i, j);
-#ifdef DEBUG
-printf("[debug] swap이 됐어??\n");
-#endif
-       a[c] = foods[i];
-
-       c++;
+           swap(foods, i, j);
+	   #ifdef DEBUG
+	   printf("[debug] after swap\n");
+	   #endif
 	}
 	#ifdef DEBUG           
 	printf("[debug]i의 이름 %s. \n", foods[i]->name);
@@ -270,6 +205,8 @@ printf("[debug] swap이 됐어??\n");
          
       }
    
+       a[c] = foods[i];
+	c++;
   }
 
 }
@@ -296,18 +233,6 @@ int r_getgrade(T_Record* p){
     return p->grade;
 }
 
-int r_get_all_by_name(T_Record* a[], char* n){
-    // 맛집름에 문자열이 포함된 모든 레코드 포인터의 배열 만들기    
-    int i, c=0;
-    for(i=0; i<_count; i++){
-        if(foods[i]!=NULL && strstr(foods[i]->name, n)){
-            a[c]=foods[i];
-            c++;
-        }
-    }
-    return c;
-} 
-
 int r_get_all_by_city(T_Record* a[], char* n){
     // 맛집 위치한 지역이 문자열과 일치하는 모든 레코드 포인터의 배열 만들기 
     int i, c=0;
@@ -332,13 +257,13 @@ int r_get_all_by_type(T_Record* a[], char* n){
     return c;
 }
 
-int r_get_all_by_price(T_Record* a[], int n, int m){
-    // 회원생년이 문자열과 일치하는 모든 레코드 포인터의 배열 만들기 
-    int i, c=0;
-    for(i=0; i<_count; i++){
-        if(foods[i]!=NULL && (foods[i]->price > n) && (foods[i]->price <= m))
+int r_get_all_by_price(T_Record* a[], int n, int m) {
+    //가격대가 문자열과 일치하는 모든 레코드 포인터의 배열 만들기
+    int i, c = 0;
+    for (i = 0; i < _count; i++) {
+        if (foods[i] != NULL && (foods[i]->price > n) && (foods[i]->price <= m))
         {
-            a[c]=foods[i];
+            a[c] = foods[i];
             c++;
         }
     }
@@ -348,8 +273,9 @@ int r_get_all_by_price(T_Record* a[], int n, int m){
 char* r_to_string_save(T_Record* p){
     static char str[80];
     sprintf(str, "%s %s %s %d %d", p->city, p->type, p->name, p->price, p->grade);
-#ifdef DEBUG
+	#ifdef DEBUG
 	printf("[DEBUG] save %s\n", p->name);
-#endif
+	#endif
     return str;
 }
+
