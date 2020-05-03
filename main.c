@@ -136,6 +136,12 @@ void update_record(){
         scanf("%d", &price);
         printf("Grade > ");
         scanf("%d", &grade);
+        while( (0>grade) || (grade>10) )
+        {
+          printf("Error: enter a grade 0~10\n");
+          printf("Grade > ");
+          scanf("%d", &grade);
+        }
 
         r_update(p, city, type, price, grade);
     }
