@@ -12,16 +12,15 @@ void search_price();
 void load_file();
 void list_sort();
 void save_file();
-//내가 여태 입력한 회원정보들을 파일에 저장
-
 void debug_records(); // for debug  
 
 int main(){
-//    r_init();
     int menu;
     while(1){
 
-        printf("\nMenu : 1.Create 2.Read 3.Update 4.Delete 5.List 6.List_best 7.Search(city) 8.Search(type) 9.Search(price) 10.Load 11.Save 0.Quit > ");
+        printf("\n*********************** Menu ***********************\n1.Create 2.Read 3.Update 4.Delete 5.List 6.List_best\n7.Search(city) 8.Search(type) 9.Search(price)\n10.Load 11.Save 0.Quit\n");
+	printf("****************************************************\n");
+	printf("Choose a menu > ");
         scanf("%d", &menu);
         printf("\n");
         switch(menu){
