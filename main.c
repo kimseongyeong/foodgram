@@ -127,6 +127,8 @@ void update_record(){
     T_Record* p = r_search_by_name(name);
     if(p) {
         printf("Enter a updated info.\n");
+	printf("Name > ");
+	scanf("%s", name);
         printf("City > ");
         scanf("%s", city);
         printf("Type > ");
@@ -142,7 +144,7 @@ void update_record(){
           scanf("%d", &grade);
         }
 
-        r_update(p, city, type, price, grade);
+        r_update(p, name, city, type, price, grade);
     }
     else {
         printf("No such restaurant!\n");
