@@ -169,6 +169,7 @@ void delete_record(){
 void list_record(){
     // 전체 리스트 출력
     printf("All records.\n");
+    printf("0. <city> type \"name\" price <grade>\n"); 
     int size = r_count();
     T_Record* records[MAX_foods];
     r_get_all(records);
