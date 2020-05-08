@@ -8,8 +8,7 @@ main_debug : $(TARGETS)
 main_debug : DEBUGOPTION = -DDEBUG
 
 $(TARGETS) : $(OBJECTS)
-	$(CC) $(CFLAGS) $(DEBUGOPTION) -o $(TARGETS) $(OBJECTS)
-
+	$(CC) $(CFLAGS) $(DEBUGOPTION) -o $@ $^
 .c.o :
 	$(CC) $(CFLAGS) $(DEBUGOPTION) -c $<
 
