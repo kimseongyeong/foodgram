@@ -2,6 +2,7 @@ FOODGRAM
 ========
 맛집 검색 프로그램
 ------------------
+## restaurant search program
 
 ### What is it?
 여러 맛집들의 정보를 등록해두고, 나중에 찾아볼 수 있는 프로그램   
@@ -17,22 +18,29 @@ FOODGRAM
 
 #### Menu
 0. 종료
-1. create : 새로운 맛집 등록 (이름, 지역, 타입, 가격, 평점)
-  - name
+1. create : add new record
+    - name
     - city 
-      - type
-       - price
-        - grade
-2. read : 입력된 맛집 정보 읽어오기
+    - type
+    - price
+    - grade
+2. read : read a record
     * 이름을 입력하면 그 이름에 해당하는 맛집 정보를 불러온다
-3. update : 맛집 정보 수정하기
+3. update : modify a record
     + 수정하고자 하는 맛집의 이름을 입력하면, 해당하는 맛집의 정보를 전부 수정할 수 있다. 
-4. delete : 맛집 정보 삭제하기
-    
-5. list : 저장된 전체 맛집 리스트
-6. list_best : 평점이 큰 순서대로 리스트(평점 0~10점)
-7. search(city) : 지역이름으로 검색
-8. search(type) : 음식 종류로 검색
-9. search(price) : 음식 가격대별 검색(1인 기준으로 설정되어있음)
-10. load : 내장된 파일 업로드함
-11. save : 프로그램 내역 파일에 저장
+4. delete : delete a record
+    * 삭제하고자 하는 맛집의 이름을 입력하면, 그 맛집 레코드는 삭제된다.
+5. list : list
+    - 저장되어있는 맛집 전체 리스트를 불러온다.
+6. list_best : list in grade order
+    - 평점이 큰 순서대로 전체 리스트를 불러온다. (평점 0~10점으로 구성)
+7. search(city) : search by city
+    - 지역이름을 입력하면(포항, 서울, 대전 ..etc) 해당 지역에 포함되어있는 맛집 리스트가 나열된다.
+8. search(type) : search by type
+    - 음식의 종류를 입력하면(한식, 양식, 일식, 중식, 분식) 해당 타입에 속하는 맛집 리스트가 나열된다.
+9. search(price) : search by price
+    - 원하는 가격대를 입력하면 그 범위 안에 속하는 맛집 리스트가 나열된다. (1인 기준 평균 가격)
+10. load : file load
+    - 내장되어 있는 foods.txt 파일을 업로드한다. (파일에 이미 몇 개의 맛집 리스트가 저장되어있음!)
+11. save : save in file
+    - 프로그램을 실행하며 수정된 내용을 다시 파일에 저장한다.(추가하거나 삭제, 수정한 내용을 다시 파일에 저장)
