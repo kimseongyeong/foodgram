@@ -60,9 +60,10 @@ int main(){
             case 12:
                 debug_records();
                 break;
-            case 0: 
+            case 0:
+		return 0; 
             default: 
-                return 0;
+                break;
         }
     }
     return 0;
