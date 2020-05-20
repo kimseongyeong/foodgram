@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g
+CFLAGS = -g -Wall
 TARGETS = main
 OBJECTS = main.c foods.o
 .SUFFIXES = .c .o

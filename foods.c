@@ -140,7 +140,7 @@ void r_get_all(T_Record* a[]){
 }
 
 void r_get_all2(T_Record* a[]){
-    int i, c=0;
+    int i;
     for(i=0; i<MAX_foods; i++){
         a[i]=foods[i];
     }
