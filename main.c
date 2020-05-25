@@ -126,7 +126,16 @@ void update_record(){
     scanf("%s", name);
 
     T_Record* p = r_search_by_name(name);
-    if(p) {
+    if(p) 
+    {
+        printf("Existing info.\n");
+        printf("Name : %s\n", r_getname(p));
+        printf("City : %s\n", r_getcity(p));
+        printf("Type : %s\n", r_gettype(p));
+        printf("Price : %d\n", r_getprice(p));
+        printf("Grade : %d\n", r_getgrade(p));
+	printf("\n");
+
         printf("Enter a updated info.\n");
 	printf("Name > ");
 	scanf("%s", name);
