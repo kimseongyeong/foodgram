@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_foods 52      // 저장할 수 있는 맛집 레코드 최대 갯수
+#define MAX_foods 100      // 저장할 수 있는 맛집 레코드 최대 갯수
 
 // 맛집 정보 레코드의 데이터 타입을 정의함
 typedef struct st_food{
