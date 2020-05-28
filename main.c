@@ -12,6 +12,7 @@ void search_price();
 void load_file();
 void list_sort();
 void save_file();
+//void add_record_number();
 void debug_records(); // for debug  
 
 int main(){
@@ -57,7 +58,10 @@ int main(){
             case 11: 
                 save_file();
                 break;                
-            case 12:
+  //          case 12:
+//		add_record_number();
+//		break;
+	    case 13:
                 debug_records();
                 break;
             case 0:
@@ -68,6 +72,17 @@ int main(){
     }
     return 0;
 }
+
+/*
+void add_record_number()
+{
+	int add;
+	printf("How many record spaces would you like to add?> ");
+	scanf("%d", &add);
+	
+	MAX_foods += add;
+}
+*/
 
 void create_record(){
     if(!r_is_available()) {
@@ -179,7 +194,7 @@ void delete_record(){
 void list_record(){
     // 전체 리스트 출력
     printf("All records.\n");
-    printf("0. <city> type \"name\" price <grade>\n"); 
+    printf("0. <city> type \"\tname\t\" price <grade>\n"); 
     int size = r_count();
     T_Record* records[MAX_foods];
     r_get_all(records);
