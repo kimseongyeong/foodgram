@@ -213,7 +213,7 @@ void r_get_all_sort(T_Record* a[])
 }
 char* r_to_string(T_Record* p){
     static char str[80];
-    sprintf(str, "[%s] %s \"%s\t\" %5d <%d>", p->city, p->type, p->name, p->price, p->grade);
+    sprintf(str, "[%s] %s \"%s\t\" <%d>", p->city, p->type, p->name, p->grade);
 
 	 return str;
 }
