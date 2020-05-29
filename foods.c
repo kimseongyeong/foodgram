@@ -1,7 +1,7 @@
 #include "foods.h"
 //#ifndef DEBUG
 //#define DEBUG
-//#endif
+//#endif//
 
 
 T_Record* foods[MAX_foods]; // 회원정보데이터 (전역)
