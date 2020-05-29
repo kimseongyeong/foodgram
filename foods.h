@@ -9,6 +9,7 @@ typedef struct st_food{
     char city[100];  // 맛집지역
     char type[100];  // 음식 종류
     char name[100];  // 맛집이름
+    char menu[100]; //메인메뉴
     int price;  // 1인 기준 가격
     int grade;  // 점수 매기기
 } T_Record;
