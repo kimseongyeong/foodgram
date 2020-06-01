@@ -20,7 +20,7 @@ int r_is_available();       // 현재 추가할 수 있는 데이터 공간이 �
 int r_first_available();    // 추가할 수 있는 가장 빠른 포인터 배열의 인덱스 찾기
 int r_count();              // 현재 저장된 맛집 레코드의 갯수 가져오기
 
-void r_create(char* c, char* t, char* n, int pr, int g);   // 신규 맛집 레코드 추가
+void r_create(char* c, char* t, char* n, char* m, int pr, int g);   // 신규 맛집 레코드 추가
 T_Record* r_search_by_name(char* n);                // 이름이 일치하는 맛집 레코드 포인터 찾기
 void r_update(T_Record* p, char* n, char* c, char* t, int pr, int g);  // 특정 맛집 레코드의 정보 업데이트
 void r_delete(T_Record* p);     // 특정 맛집 레코드의 맛집정보 제거

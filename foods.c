@@ -53,7 +53,7 @@ int r_count(){
     return _count;
 }
 
-void r_create(char* c, char* t, char* n, int pr, int g)
+void r_create(char* c, char* t, char* n, char* m, int pr, int g)
 {
     int index = r_first_available();
 #ifdef DEBUG
@@ -65,6 +65,7 @@ void r_create(char* c, char* t, char* n, int pr, int g)
     strcpy(p->city, c);
     strcpy(p->type, t);
     strcpy(p->name, n);  
+    strcpy(p->menu, m);
     p->price = pr;
     p->grade = g;
     _count++;

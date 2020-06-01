@@ -89,7 +89,7 @@ void create_record(){
         printf("There is no space!\n");
         return;
     }
-    char city[100], type[100], name[100];
+    char city[100], type[100], name[100], menu[100];
     int price, grade;  
     printf("Enter a new restaurant's info. \n");
     printf("Name > ");
@@ -102,6 +102,8 @@ void create_record(){
     scanf("%s", city);
     printf("Type > ");
     scanf("%s", type);
+    printf("Menu > ");
+    scanf("%s", menu);
     printf("Price > ");
     scanf("%d", &price);
     printf("Grade > ");
@@ -112,7 +114,7 @@ void create_record(){
         printf("Grade > ");
         scanf("%d", &grade);
     }
-    r_create(city, type, name, price, grade);
+    r_create(city, type, name, menu, price, grade);
 }
 
 void read_record(){
@@ -279,7 +281,7 @@ void load_file(){
     if (yesno == 0) return;
     
     FILE* f = fopen("foods.txt", "r");
-    char city[100], type[100], name[100];
+    char city[100], type[100], name[100], menu[100];
     int price, grade;
 
     while(!feof(f))
@@ -295,7 +297,7 @@ void load_file(){
             printf("[Load] Duplicated name(%s)! loading.\n", name);
             continue;
         }
-        r_create(city, type, name, price, grade);
+        r_create(city, type, name, menu, price, grade);
 	  
     }
 	
