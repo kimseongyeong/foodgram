@@ -163,11 +163,12 @@ void swap(T_Record* a[], int i, int j)
     strcpy(temp, foods[i]->name);
     strcpy(foods[i]->name, foods[j]->name);
     strcpy(foods[j]->name, temp);
-    
+
+/*    
     tmp = foods[i]->price;
     foods[i]->price = foods[j]->price;
     foods[j]->price = tmp;
-
+*/
     tmp = foods[i]->grade;
     foods[i]->grade = foods[j]->grade;
     foods[j]->grade = tmp;
@@ -227,6 +228,9 @@ char* r_gettype(T_Record* p){
 }
 char* r_getname(T_Record* p){
     return p->name;
+}
+char* r_getmenu(T_Record* p){
+    return p->menu;
 }
 int r_getprice(T_Record* p){
     return p->price;

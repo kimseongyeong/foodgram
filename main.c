@@ -128,6 +128,7 @@ void read_record(){
         printf("Name : %s\n", r_getname(p));
         printf("City : %s\n", r_getcity(p));
         printf("Type : %s\n", r_gettype(p));
+	printf("Menu : %s\n", r_getmenu(p));
         printf("Price : %d\n", r_getprice(p));
         printf("Grade : %d\n", r_getgrade(p));
     }

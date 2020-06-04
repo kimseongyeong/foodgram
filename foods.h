@@ -34,6 +34,7 @@ char* r_to_string(T_Record* p); // 특정 맛집 레코드의 내용을 문자�
 char* r_getcity(T_Record* p);   // 특정 맛집 레코드의 위치한 지역 가져오기
 char* r_gettype(T_Record* p);   // 특정 맛집 레코드의 음식종류 가져오기
 char* r_getname(T_Record* p);   // 특정 맛집 레코드의 가게이름 가져오기
+char* r_getmenu(T_Record* p);
 int r_getprice(T_Record* p);// 특정 맛집 레코드의 가격 가져오기
 int r_getgrade(T_Record* p);// 특정 맛집 레코드의 점수 가져오기
 
