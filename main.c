@@ -292,7 +292,7 @@ void load_file(){
             break;
         }
 
-        int n = fscanf(f,"%s %s %s %d %d", city, type, name, &price, &grade);
+        int n = fscanf(f,"%s %s %s %s %d %d", city, type, name, menu, &price, &grade);
         if (n<4) break;
         if(r_search_by_name(name)) {
             printf("[Load] Duplicated name(%s)! loading.\n", name);

@@ -278,7 +278,7 @@ int r_get_all_by_price(T_Record* a[], int n, int m) {
 
 char* r_to_string_save(T_Record* p){
     static char str[80];
-    sprintf(str, "%s %s %s %d %d", p->city, p->type, p->name, p->price, p->grade);
+    sprintf(str, "%s %s %s %s %d %d", p->city, p->type, p->name, p->menu, p->price, p->grade);
 	#ifdef DEBUG
 	printf("[DEBUG] save %s\n", p->name);
 	#endif
