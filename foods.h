@@ -22,7 +22,7 @@ int r_count();              // 현재 저장된 맛집 레코드의 갯수 가�
 
 void r_create(char* c, char* t, char* n, char* m, int pr, int g);   // 신규 맛집 레코드 추가
 T_Record* r_search_by_name(char* n);                // 이름이 일치하는 맛집 레코드 포인터 찾기
-void r_update(T_Record* p, char* n, char* c, char* t, int pr, int g);  // 특정 맛집 레코드의 정보 업데이트
+void r_update(T_Record* p, char* n, char* c, char* t, char* m, int pr, int g);  // 특정 맛집 레코드의 정보 업데이트
 void r_delete(T_Record* p);     // 특정 맛집 레코드의 맛집정보 제거
 void r_get_all(T_Record* a[]);  // 맛집정보가 들어있는 모든 레코드 포인터의 배열을 만들기
 void r_get_all2(T_Record* a[]);  // 모든 레코드 포인터의 배열을 만들기 (for debug)

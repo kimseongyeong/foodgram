@@ -100,10 +100,11 @@ T_Record* r_search_by_name(char* n){
     return NULL;
 }
 
-void r_update(T_Record* p, char* n, char* c, char* t, int pr, int g){
+void r_update(T_Record* p, char* n, char* c, char* t, char* m, int pr, int g){
     strcpy(p->name, n);
     strcpy(p->city, c);
     strcpy(p->type, t);
+    strcpy(p->menu, m);
     p->price = pr;
     p->grade = g;
 #ifdef DEBUG

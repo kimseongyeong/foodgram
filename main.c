@@ -138,7 +138,7 @@ void read_record(){
 }
 
 void update_record(){
-    char city[100], type[100], name[100];
+    char city[100], type[100], name[100], menu[100];
     int price, grade;
     printf("Enter a name > ");
     scanf("%s", name);
@@ -150,6 +150,7 @@ void update_record(){
         printf("Name : %s\n", r_getname(p));
         printf("City : %s\n", r_getcity(p));
         printf("Type : %s\n", r_gettype(p));
+	printf("Menu : %s\n", r_getmenu(p));
         printf("Price : %d\n", r_getprice(p));
         printf("Grade : %d\n", r_getgrade(p));
 	printf("\n");
@@ -161,6 +162,8 @@ void update_record(){
         scanf("%s", city);
         printf("Type > ");
         scanf("%s", type);
+	printf("Menu > ");
+	scanf("%s", menu);
         printf("Price > ");
         scanf("%d", &price);
         printf("Grade > ");
@@ -172,7 +175,7 @@ void update_record(){
           scanf("%d", &grade);
         }
 
-        r_update(p, name, city, type, price, grade);
+        r_update(p, name, city, type, menu, price, grade);
     }
     else {
         printf("No such restaurant!\n");
