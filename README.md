@@ -21,6 +21,7 @@ FOODGRAM
     - name
     - city 
     - type
+    - main menu
     - price
     - grade
 ##### 2. read : read a record
@@ -38,7 +39,7 @@ FOODGRAM
 ##### 8. search(type) : search by type
     - 음식의 종류를 입력하면(한식, 양식, 일식, 중식, 분식) 해당 타입에 속하는 맛집 리스트가 나열된다.
 ##### 9. search(price) : search by price
-    - 원하는 가격대를 입력하면 그 범위 안에 속하는 맛집 리스트가 나열된다. (1인 기준 평균 가격)
+    - 원하는 가격대를 입력하면 그 범위 안에 속하는 맛집 리스트가 나열된다. (메인 메뉴 가격 기준)
 ##### 10. load : file load
     - 내장되어 있는 foods.txt 파일을 업로드한다. (파일에 이미 몇 개의 맛집 리스트가 저장되어있음!)
 ##### 11. save : save in file
