@@ -40,5 +40,6 @@ int r_getgrade(T_Record* p);// 특정 맛집 레코드의 점수 가져오기
 
 int r_get_all_by_city(T_Record* a[], char* n);  // 맛집이 위치한 지역이 문자열과 일치하는 모든 레코드 포인터의 배열 만들기 
 int r_get_all_by_type(T_Record* a[], char* n);  // 맛집의 음식 종류가 문자열과 일치하는 모든 레코드 포인터의 배열 만들기 
+int r_get_all_by_menu(T_Record* a[], char* n);
 int r_get_all_by_price(T_Record* a[], int n, int m);
 char* r_to_string_save(T_Record* p); // 특정 맛집 레코드의 내용을 파일저장용 문자열로 가져오기

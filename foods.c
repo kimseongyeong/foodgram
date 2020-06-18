@@ -255,6 +255,20 @@ int r_get_all_by_city(T_Record* a[], char* n){
     return c;
 }
 
+
+int r_get_all_by_menu(T_Record* a[], char* n){
+    // 맛집 위치한 지역이 문자열과 일치하는 모든 레코드 포인터의 배열 만들기
+    int i, c=0;
+    for(i=0; i<_count; i++){
+        if(foods[i]!=NULL && (strcmp(foods[i]->menu, n)==0)){
+            a[c]=foods[i];
+            c++;
+        }
+    }
+    return c;
+}
+
+
 int r_get_all_by_type(T_Record* a[], char* n){
     // 맛집 타입이 문자열과 일치하는 모든 레코드 포인터의 배열 만들기 
     int i, c=0;

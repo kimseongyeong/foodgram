@@ -8,6 +8,7 @@ void list_record();
 void list_sort();
 void search_city();
 void search_type();
+void search_menu();
 void search_price();
 void load_file();
 void list_sort();
@@ -48,14 +49,17 @@ int main(){
                 break;            
             case 8: 
                 search_type();
-                break;            
-            case 9: 
+                break;
+	    case 9:
+		search_menu();
+		break;            
+            case 10: 
                 search_price();
                 break;
-            case 10: 
+            case 11: 
                 load_file();
                 break;
-            case 11: 
+            case 12: 
                 save_file();
                 break;                
   //          case 12:
@@ -249,6 +253,22 @@ void search_type(){
 
     T_Record* records[MAX_foods];
     int size = r_get_all_by_type(records, name);
+    printf("%d records found.\n", size);
+
+    for(int i=0; i<size; i++){
+        T_Record* p = records[i];
+        printf("%d. %s\n", i+1, r_to_string(p));
+    }
+}
+
+void search_menu(){
+    //음식종류로 검색
+    char name[100];
+    printf("Enter the menu > ");
+    scanf("%s", name);
+
+    T_Record* records[MAX_foods];
+    int size = r_get_all_by_menu(records, name);
     printf("%d records found.\n", size);
 
     for(int i=0; i<size; i++){
